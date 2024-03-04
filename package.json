@@ -1,0 +1,20 @@
+{
+  "name": "agora-aegean-portfolios",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cesarapires/agora-aegean-portfolios.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cesarapires/agora-aegean-portfolios/issues"
+  },
+  "homepage": "https://github.com/cesarapires/agora-aegean-portfolios#readme"
+}
