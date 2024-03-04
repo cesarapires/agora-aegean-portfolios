@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/cesarapires/agora-aegean-portfolios#readme",
   "devDependencies": {
+    "@types/node": "^20.11.24",
     "typescript": "^5.3.3"
   }
 }
