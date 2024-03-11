@@ -10,7 +10,6 @@ env:
 jobs:
   build-and-push:
     name: 🏗️ Build Docker Image
-    needs: get-last-tag
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -47,16 +46,16 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-  deploy:
+  deploy-kubernetes:
     name: 🛫 Deploy
     runs-on: ubuntu-latest
-    needs: build
+    needs: build-and-push
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           repository: cesarapires/gitops-projects
           ref: main
+          token: ${{ secrets.GIT_HUB_TOKEN }}
 
       - name: Kustomize
         uses: imranismail/setup-kustomize@v1
@@ -73,7 +72,11 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Deploy Action"
-          git commit -am "Change image tag"
+          git commit -am "chore: bump image tag"
 
       - name: Push Changes
         uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GIT_HUB_TOKEN }}
+          repository: cesarapires/gitops-projects
+          branch: main
