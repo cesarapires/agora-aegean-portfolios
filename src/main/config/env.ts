@@ -1,4 +1,4 @@
-type LogLevel = 'TRACE' | 'DEBUG' | 'INFO' | 'WARN' | 'ERROR';
+type LogLevel = 'TRACE' | 'DEBUG' | 'INFO' | 'WARN' | 'ERROR'
 
 export const env = {
   port: process.env.PORT ?? '3000',
