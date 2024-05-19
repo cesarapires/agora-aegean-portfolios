@@ -4,7 +4,7 @@ import { type CreateWallet } from '@/domain/feature/create-wallet'
 import { CreateNewWalletController } from '@/application/controllers/create-wallet-controller'
 import { faker } from '@faker-js/faker'
 
-describe('SaveProfileController', () => {
+describe('CreateNewWalletController', () => {
   let sut: CreateNewWalletController
   let createWallet: MockProxy<CreateWallet>
   let request: any
@@ -13,13 +13,13 @@ describe('SaveProfileController', () => {
     createWallet = mock()
     createWallet.handle.mockResolvedValue('any_wallet_id')
     jest.useFakeTimers()
-    jest.setSystemTime(new Date(2024, 0, 17))
+    jest.setSystemTime(new Date(2024, 0, 17, 3, 0, 0, 0))
   })
 
   beforeEach(() => {
     sut = new CreateNewWalletController(createWallet)
     request = {
-      userId: faker.string.uuid(),
+      userId: faker.string.alphanumeric(),
       name: faker.finance.accountName(),
       balance: faker.finance.amount()
     }
@@ -38,7 +38,7 @@ describe('SaveProfileController', () => {
 
     expect(createWallet.handle).toHaveBeenCalledWith({
       ...request,
-      creationDate: new Date('2024-01-17T03:00:00.000Z')
+      creationDate: new Date(new Date(2024, 0, 17, 3, 0, 0, 0))
     })
     expect(createWallet.handle).toHaveBeenCalledTimes(1)
   })
