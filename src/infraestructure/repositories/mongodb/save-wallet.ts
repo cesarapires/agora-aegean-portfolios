@@ -13,7 +13,7 @@ export class MongoWalletRepository implements SaveWallet {
 
   async save (params: SaveWallet.Params): Promise<SaveWallet.Result> {
     const walletModel = {
-      _id: new mongoose.Types.ObjectId(params.id),
+      _id: new mongoose.Types.ObjectId(),
       userId: new mongoose.Types.ObjectId(params.userId),
       name: params.name,
       balance: params.balance,
