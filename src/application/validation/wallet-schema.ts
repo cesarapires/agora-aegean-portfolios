@@ -2,7 +2,7 @@ import Joi from 'joi'
 
 export const createWalletSchemaValidation = Joi.object({
   id: Joi.string().uuid(),
-  userId: Joi.string().uuid().required(),
+  userId: Joi.string().alphanum().required(),
   name: Joi.string().required(),
   balance: Joi.number().required()
 })
