@@ -1,4 +1,5 @@
 import { type HttpResponse, serverError, badRequest } from '@/application/helpers/http'
+import * as log from 'loglevel'
 import type Joi from 'joi'
 
 export abstract class Controller {
@@ -18,6 +19,7 @@ export abstract class Controller {
     try {
       return await this.perform(httpRequest)
     } catch (error: any) {
+      log.error(error)
       return serverError(error as Error)
     }
   }
