@@ -4,7 +4,6 @@ export interface SaveWallet {
 
 export namespace SaveWallet {
   export type Params = {
-    id: string
     userId: string
     name: string
     balance: number

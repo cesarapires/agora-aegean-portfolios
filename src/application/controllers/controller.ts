@@ -19,7 +19,7 @@ export abstract class Controller {
     try {
       return await this.perform(httpRequest)
     } catch (error: any) {
-      log.error(error)
+      log.error(error.message)
       return serverError(error as Error)
     }
   }

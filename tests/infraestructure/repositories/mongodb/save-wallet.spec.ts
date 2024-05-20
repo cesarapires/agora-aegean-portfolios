@@ -27,7 +27,6 @@ describe('MongoWalletRepository', () => {
   describe('SaveWallet', () => {
     it('should save wallet', async () => {
       const { id } = await sut.save({
-        id: '663d25d1beb87c3032741c83',
         userId: '663d25d1beb87c3032741c82',
         name: 'John Doe Wallet',
         balance: 657.78,
