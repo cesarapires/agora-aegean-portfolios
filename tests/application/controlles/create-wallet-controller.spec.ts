@@ -12,8 +12,6 @@ describe('CreateNewWalletController', () => {
   beforeAll(() => {
     createWallet = mock()
     createWallet.handle.mockResolvedValue('any_wallet_id')
-    jest.useFakeTimers()
-    jest.setSystemTime(new Date(2024, 0, 17, 3, 0, 0, 0))
   })
 
   beforeEach(() => {
@@ -25,10 +23,6 @@ describe('CreateNewWalletController', () => {
     }
   })
 
-  afterAll(() => {
-    jest.useRealTimers()
-  })
-
   it('should extendes controller', async () => {
     expect(sut).toBeInstanceOf(Controller)
   })
@@ -36,10 +30,7 @@ describe('CreateNewWalletController', () => {
   it('should call CreateWallet with correct params', async () => {
     await sut.handle(request)
 
-    expect(createWallet.handle).toHaveBeenCalledWith({
-      ...request,
-      creationDate: new Date(new Date(2024, 0, 17, 3, 0, 0, 0))
-    })
+    expect(createWallet.handle).toHaveBeenCalledWith({ ...request })
     expect(createWallet.handle).toHaveBeenCalledTimes(1)
   })
 

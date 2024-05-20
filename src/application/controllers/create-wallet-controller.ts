@@ -15,7 +15,7 @@ export class CreateNewWalletController extends Controller {
   }
 
   async perform (httpRequest: HttpRequest): Promise<HttpResponse<Model>> {
-    const id = await this.createNewWallet.handle({ ...httpRequest, creationDate: new Date() })
+    const id = await this.createNewWallet.handle(httpRequest)
     log.info(`New wallet created with ID: ${id}`)
     return ok({ id })
   }
