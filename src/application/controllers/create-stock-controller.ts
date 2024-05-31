@@ -28,7 +28,7 @@ type Model = Error | {
   type: string
 }
 
-export class CreateNewWalletController extends Controller {
+export class CreateNewStockController extends Controller {
   constructor (private readonly createNewStock: CreateStock) {
     super(createStockSchemaValidation)
   }
