@@ -7,7 +7,7 @@ export class CreateWalletUseCase implements CreateWallet {
   ) {}
 
   async handle (params: CreateWallet.Params): Promise<string> {
-    if (params.balance <= 0) {
+    if (params.balance < 0) {
       throw new Error('Business Error: The initial balance cannot be negative')
     }
     const { id } = await this.saveWallet.save({ ...params, creationDate: new Date() })
