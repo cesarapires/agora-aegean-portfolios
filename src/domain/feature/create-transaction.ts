@@ -1,11 +1,15 @@
-import { type Transaction } from '@/domain/models/transaction'
-
 export interface CreateTransaction {
   handle: (params: CreateTransaction.Params) => Promise<CreateTransaction.Result>
 }
 
 export namespace CreateTransaction {
-  export type Params = Transaction
+  export type Params = {
+    walletId: string
+    stockId: string
+    userId: string
+    type: string
+    quantity: number
+  }
 
   export type Result = Error | {
     id: string

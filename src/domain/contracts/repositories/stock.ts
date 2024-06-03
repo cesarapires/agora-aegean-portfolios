@@ -3,7 +3,7 @@ export interface SaveStock {
 }
 
 export interface GetStock {
-  get: (params: string) => Promise<StockData>
+  get: (params: string) => Promise<StockData | undefined>
 }
 
 export namespace SaveStock {
