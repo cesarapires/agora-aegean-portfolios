@@ -41,6 +41,10 @@ describe('CreateTransactionUseCase', () => {
       sector: 'Energy',
       type: 'stock'
     })
+  })
+
+  beforeEach(() => {
+    jest.clearAllMocks()
     walletRepository.get.mockResolvedValue({
       id: '5f8f8c44b54764421b7156c3',
       userId: '5e1a0651741b255ddda996c4',
@@ -48,10 +52,6 @@ describe('CreateTransactionUseCase', () => {
       balance: 1050,
       creationDate: dateGeneric
     })
-  })
-
-  beforeEach(() => {
-    jest.clearAllMocks()
     sut = new CreateTransactionUseCase(
       transactionRepository,
       stockRepository,
@@ -59,14 +59,14 @@ describe('CreateTransactionUseCase', () => {
     )
   })
 
-  it('should call GetStock to get stockPrice', async () => {
+  it('should call GetStock', async () => {
     await sut.handle(transaction)
 
     expect(stockRepository.get).toHaveBeenCalledTimes(1)
     expect(stockRepository.get).toHaveBeenCalledWith('6f8f8c44b54764421b7156c4')
   })
 
-  it('should call GetWallet to get wallet', async () => {
+  it('should call GetWallett', async () => {
     await sut.handle(transaction)
 
     expect(walletRepository.get).toHaveBeenCalledTimes(1)

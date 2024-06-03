@@ -1,5 +1,5 @@
 export interface Stock {
-  id?: string
+  id: string
   stock: string
   name: string
   close: number
