@@ -1,4 +1,4 @@
-import { type SaveStock } from '@/domain/contracts/repositories/save-stock'
+import { type StockData, type SaveStock } from '@/domain/contracts/repositories/stock'
 import { stockShema } from '@/infraestructure/repositories/mongodb/schema/stock'
 import { type MongoStock } from '@/infraestructure/repositories/mongodb/entities/stock'
 
@@ -11,7 +11,7 @@ export class MongoStockRepository implements SaveStock {
     this.stock = mongoose.model('stock', stockShema)
   }
 
-  async save (params: SaveStock.Params): Promise<SaveStock.Result> {
+  async save (params: SaveStock.Params): Promise<StockData> {
     const stockModel = {
       _id: new mongoose.Types.ObjectId(),
       ...params

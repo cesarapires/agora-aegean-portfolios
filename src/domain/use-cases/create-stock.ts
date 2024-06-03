@@ -1,5 +1,5 @@
 import { type CreateStock } from '@/domain/feature/create-stock'
-import { type SaveStock } from '@/domain/contracts/repositories/save-stock'
+import { type SaveStock } from '@/domain/contracts/repositories/stock'
 
 export class CreateStockUseCase implements CreateStock {
   constructor (

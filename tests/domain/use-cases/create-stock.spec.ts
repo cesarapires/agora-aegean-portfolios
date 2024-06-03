@@ -1,5 +1,5 @@
 import { CreateStockUseCase } from '@/domain/use-cases/create-stock'
-import { type SaveStock } from '@/domain/contracts/repositories/save-stock'
+import { type SaveStock } from '@/domain/contracts/repositories/stock'
 
 import { mock, type MockProxy } from 'jest-mock-extended'
 
