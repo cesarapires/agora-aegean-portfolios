@@ -2,13 +2,13 @@ import mongoose, { type Model } from 'mongoose'
 import { type MongoMemoryServer } from 'mongodb-memory-server'
 import { walletSchema } from '@/infraestructure/repositories/mongodb/schema/wallet'
 import { type MongoWallet } from '@/infraestructure/repositories/mongodb/entities/wallet'
-import { MongoWalletRepository } from '@/infraestructure/repositories/mongodb/save-wallet'
+import { MongoSaveWalletRepository } from '@/infraestructure/repositories/mongodb/save-wallet'
 import { makeFakeDb } from './mocks/connection'
 import { type SaveWallet } from '@/domain/contracts/repositories/wallet'
 
-describe('MongoWalletRepository', () => {
+describe('MongoSaveWalletRepository', () => {
   let wallet: any
-  let sut: MongoWalletRepository
+  let sut: MongoSaveWalletRepository
   let mongodb: MongoMemoryServer
   let mongoWalletRepository: Model<MongoWallet>
 
@@ -24,7 +24,7 @@ describe('MongoWalletRepository', () => {
   })
 
   beforeEach(() => {
-    sut = new MongoWalletRepository()
+    sut = new MongoSaveWalletRepository()
   })
 
   afterAll(async () => {

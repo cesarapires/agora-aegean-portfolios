@@ -4,7 +4,7 @@ import { type MongoWallet } from '@/infraestructure/repositories/mongodb/entitie
 
 import mongoose, { type Model } from 'mongoose'
 
-export class MongoWalletRepository implements GetWallet {
+export class MongoGetWalletRepository implements GetWallet {
   private readonly wallet: Model<MongoWallet>
 
   constructor () {

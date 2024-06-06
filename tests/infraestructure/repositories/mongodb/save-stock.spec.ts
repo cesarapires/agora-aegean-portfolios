@@ -1,12 +1,12 @@
 import mongoose, { type Model } from 'mongoose'
 import { type MongoMemoryServer } from 'mongodb-memory-server'
-import { MongoStockRepository } from '@/infraestructure/repositories/mongodb/save-stock'
+import { MongoSaveStockRepository } from '@/infraestructure/repositories/mongodb/save-stock'
 import { makeFakeDb } from './mocks/connection'
 import { type MongoStock } from '@/infraestructure/repositories/mongodb/entities/stock'
 import { stockShema } from '@/infraestructure/repositories/mongodb/schema/stock'
 
-describe('MongoStockRepository', () => {
-  let sut: MongoStockRepository
+describe('MongoSaveStockRepository', () => {
+  let sut: MongoSaveStockRepository
   let mongodb: MongoMemoryServer
   let mongoStockRepository: Model<MongoStock>
 
@@ -16,7 +16,7 @@ describe('MongoStockRepository', () => {
   })
 
   beforeEach(() => {
-    sut = new MongoStockRepository()
+    sut = new MongoSaveStockRepository()
   })
 
   afterAll(async () => {

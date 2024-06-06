@@ -1,8 +1,8 @@
 import { CreateWalletUseCase } from '@/domain/use-cases/create-wallet'
-import { makeMongoWalletRepository } from '@/main/factories/infraestructure/repositories/mongodb/mongodb-save-wallet'
+import { makeMongoSaveWalletRepository } from '@/main/factories/infraestructure/repositories/mongodb/mongodb-save-wallet'
 
 export const makeCreateWalletUseCase = (): CreateWalletUseCase => {
-  const repository = makeMongoWalletRepository()
+  const repository = makeMongoSaveWalletRepository()
 
   return new CreateWalletUseCase(repository)
 }

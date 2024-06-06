@@ -1,5 +1,5 @@
-import { MongoWalletRepository } from '@/infraestructure/repositories/mongodb/save-wallet'
+import { MongoSaveWalletRepository } from '@/infraestructure/repositories/mongodb/save-wallet'
 
-export const makeMongoWalletRepository = (): MongoWalletRepository => {
-  return new MongoWalletRepository()
+export const makeMongoSaveWalletRepository = (): MongoSaveWalletRepository => {
+  return new MongoSaveWalletRepository()
 }

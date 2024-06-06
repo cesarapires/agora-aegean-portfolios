@@ -1,5 +1,5 @@
-import { MongoStockRepository } from '@/infraestructure/repositories/mongodb/save-stock'
+import { MongoSaveStockRepository } from '@/infraestructure/repositories/mongodb/save-stock'
 
-export const makeMongoStockRepository = (): MongoStockRepository => {
-  return new MongoStockRepository()
+export const makeMongoSaveStockRepository = (): MongoSaveStockRepository => {
+  return new MongoSaveStockRepository()
 }

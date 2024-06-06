@@ -4,7 +4,7 @@ import { type MongoStock } from '@/infraestructure/repositories/mongodb/entities
 
 import mongoose, { type Model } from 'mongoose'
 
-export class MongoStockRepository implements GetStock {
+export class MongoGetStockRepository implements GetStock {
   private readonly stock: Model<MongoStock>
 
   constructor () {
