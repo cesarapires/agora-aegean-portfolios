@@ -1,7 +1,7 @@
 import { type CreateTransaction } from '@/domain/feature/create-transaction'
 import { type SaveTransaction } from '@/domain/contracts/repositories/save-transaction'
 import { type GetStock } from '@/domain/contracts/repositories/stock'
-import { type GetWallet, type UpdateWallet } from '@/domain/contracts/repositories/save-wallet'
+import { type GetWallet, type UpdateWallet } from '@/domain/contracts/repositories/wallet'
 import { type Transaction } from '@/domain/models/transaction'
 import { type Stock } from '@/domain/models/stock'
 import { type Wallet } from '@/domain/models/wallet'

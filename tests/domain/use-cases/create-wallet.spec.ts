@@ -1,5 +1,5 @@
 import { CreateWalletUseCase } from '@/domain/use-cases/create-wallet'
-import { type SaveWallet } from '@/domain/contracts/repositories/save-wallet'
+import { type SaveWallet } from '@/domain/contracts/repositories/wallet'
 
 import { faker } from '@faker-js/faker'
 import { mock, type MockProxy } from 'jest-mock-extended'

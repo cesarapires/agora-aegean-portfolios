@@ -7,17 +7,7 @@ export interface GetStock {
 }
 
 export namespace SaveStock {
-  export type Params = {
-    stock: string
-    name: string
-    close: number
-    change: number
-    volume: number
-    marketCap: number
-    logo: string
-    sector: string
-    type: string
-  }
+  export type Params = Omit<StockData, 'id'>
 }
 
 export type StockData = {

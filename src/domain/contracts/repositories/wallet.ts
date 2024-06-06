@@ -7,16 +7,11 @@ export interface GetWallet {
 }
 
 export interface UpdateWallet {
-  update: (params: WalletData) => Promise<WalletData>
+  update: (params: WalletData) => Promise<WalletData | undefined>
 }
 
 export namespace SaveWallet {
-  export type Params = {
-    userId: string
-    name: string
-    balance: number
-    creationDate: Date
-  }
+  export type Params = Omit<WalletData, 'id'>
   export type Result = {
     id: string
   }

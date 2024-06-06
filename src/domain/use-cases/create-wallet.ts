@@ -1,5 +1,5 @@
 import { type CreateWallet } from '@/domain/feature/create-wallet'
-import { type SaveWallet } from '@/domain/contracts/repositories/save-wallet'
+import { type SaveWallet } from '@/domain/contracts/repositories/wallet'
 
 export class CreateWalletUseCase implements CreateWallet {
   constructor (

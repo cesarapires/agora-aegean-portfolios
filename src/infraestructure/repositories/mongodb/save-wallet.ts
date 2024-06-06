@@ -1,4 +1,4 @@
-import { type SaveWallet } from '@/domain/contracts/repositories/save-wallet'
+import { type SaveWallet } from '@/domain/contracts/repositories/wallet'
 import { walletSchema } from '@/infraestructure/repositories/mongodb/schema/wallet'
 import { type MongoWallet } from '@/infraestructure/repositories/mongodb/entities/wallet'
 

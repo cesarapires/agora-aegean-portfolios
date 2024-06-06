@@ -1,7 +1,7 @@
 import { type GetStock } from '@/domain/contracts/repositories/stock'
 import { CreateTransactionUseCase } from '@/domain/use-cases/create-transaction'
 import { type SaveTransaction } from '@/domain/contracts/repositories/save-transaction'
-import { type GetWallet, type UpdateWallet } from '@/domain/contracts/repositories/save-wallet'
+import { type GetWallet, type UpdateWallet } from '@/domain/contracts/repositories/wallet'
 
 import { mock, type MockProxy } from 'jest-mock-extended'
 
