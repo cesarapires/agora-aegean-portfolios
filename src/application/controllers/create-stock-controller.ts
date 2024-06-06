@@ -35,9 +35,6 @@ export class CreateNewStockController extends Controller {
 
   async perform (httpRequest: HttpRequest): Promise<HttpResponse<Model>> {
     const stock = await this.createNewStock.handle(httpRequest)
-    if (stock.id === undefined) {
-      throw new Error('Error creating stock: Unable to obtain id')
-    }
     log.info(`New stock created with ID: ${stock.id}`)
     return ok({
       id: stock.id,
