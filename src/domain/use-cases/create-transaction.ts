@@ -1,5 +1,5 @@
 import { type CreateTransaction } from '@/domain/feature/create-transaction'
-import { type SaveTransaction } from '@/domain/contracts/repositories/save-transaction'
+import { type SaveTransaction } from '@/domain/contracts/repositories/transaction'
 import { type GetStock } from '@/domain/contracts/repositories/stock'
 import { type GetWallet, type UpdateWallet } from '@/domain/contracts/repositories/wallet'
 import { type Transaction } from '@/domain/models/transaction'
