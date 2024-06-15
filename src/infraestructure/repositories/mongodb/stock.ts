@@ -1,10 +1,10 @@
-import { type StockData, type GetStock } from '@/domain/contracts/repositories/stock'
+import { type StockData, type GetStock, type SaveStock } from '@/domain/contracts/repositories/stock'
 import { stockShema } from '@/infraestructure/repositories/mongodb/schema/stock'
 import { type MongoStock } from '@/infraestructure/repositories/mongodb/entities/stock'
 
 import mongoose, { type Model } from 'mongoose'
 
-export class MongoGetStockRepository implements GetStock {
+export class MongoStockRepository implements GetStock, SaveStock {
   private readonly stock: Model<MongoStock>
 
   constructor () {
@@ -26,6 +26,18 @@ export class MongoGetStockRepository implements GetStock {
         sector: stock.sector,
         type: stock.type
       }
+    }
+  }
+
+  async save (params: SaveStock.Params): Promise<StockData> {
+    const stockModel = {
+      _id: new mongoose.Types.ObjectId(),
+      ...params
+    }
+    const stock = await this.stock.create(stockModel)
+    return {
+      id: stock._id.toHexString(),
+      ...params
     }
   }
 }
