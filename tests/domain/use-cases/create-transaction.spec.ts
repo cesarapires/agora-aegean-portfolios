@@ -130,9 +130,10 @@ describe('CreateTransactionUseCase', () => {
 
   it('should throw Error when insufficient funds', async () => {
     transaction.quantity = 110
+    transaction.type = 'BUY'
 
     const promise = sut.handle(transaction)
 
-    await expect(promise).rejects.toThrow(new Error('Business Error: Insufficient funds'))
+    await expect(promise).rejects.toThrow(new Error('Insufficient funds'))
   })
 })

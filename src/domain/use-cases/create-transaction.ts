@@ -5,6 +5,7 @@ import { type GetWallet, type UpdateWallet } from '@/domain/contracts/repositori
 import { type Transaction } from '@/domain/models/transaction'
 import { type Stock } from '@/domain/models/stock'
 import { type Wallet } from '@/domain/models/wallet'
+import { BusinessError, NotFoundError } from '@/domain/errors/domain-error'
 
 export class CreateTransactionUseCase implements CreateTransaction {
   private transaction: Omit<Transaction, 'id'> | undefined
@@ -30,7 +31,7 @@ export class CreateTransactionUseCase implements CreateTransaction {
   async getWallet (walletId: string): Promise<Wallet> {
     const wallet = await this.walletRepository.get(walletId)
     if (wallet === undefined) {
-      throw new Error('Wallet not found')
+      throw new NotFoundError('Wallet')
     }
     return wallet
   }
@@ -38,7 +39,7 @@ export class CreateTransactionUseCase implements CreateTransaction {
   async getStock (stockId: string): Promise<Stock> {
     const stock = await this.stockRepository.get(stockId)
     if (stock === undefined) {
-      throw new Error('Stock not found')
+      throw new NotFoundError('Stock')
     }
     return stock
   }
@@ -49,8 +50,8 @@ export class CreateTransactionUseCase implements CreateTransaction {
     transaction: CreateTransaction.Params
   ): void {
     const totalValue = stock.close * transaction.quantity
-    if (totalValue > wallet.balance) {
-      throw new Error('Business Error: Insufficient funds')
+    if (totalValue > wallet.balance && transaction.type === 'BUY') {
+      throw new BusinessError('Insufficient funds')
     }
     this.transaction = {
       ...transaction,
