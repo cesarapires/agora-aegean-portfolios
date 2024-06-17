@@ -2,7 +2,7 @@ import { type CreateTransaction } from '@/domain/feature/create-transaction'
 import { ok, type HttpResponse } from '../helpers/http'
 import { Controller } from './controller'
 import * as log from 'loglevel'
-import { createStockSchemaValidation } from '../validation/stock-schema'
+import { createTransactionSchemaValidation } from '../validation/transaction-schema'
 
 type HttpRequest = {
   walletId: string
@@ -26,7 +26,7 @@ export class CreateTransactionController extends Controller {
     private readonly createTransaction: CreateTransaction,
     private readonly typeOfTransaction: 'BUY' | 'SELL'
   ) {
-    super(createStockSchemaValidation)
+    super(createTransactionSchemaValidation)
   }
 
   async perform (httpRequest: HttpRequest): Promise<HttpResponse<Model>> {
