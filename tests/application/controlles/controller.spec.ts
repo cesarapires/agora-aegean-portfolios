@@ -8,6 +8,15 @@ const genericJoi = Joi.object({
   teste: Joi.string().required()
 })
 
+jest.mock('loglevel', () => {
+  return {
+    error: jest.fn(),
+    log: jest.fn().mockImplementation(() => ({
+      level: jest.fn()
+    }))
+  }
+})
+
 class ControllerStub extends Controller {
   result: HttpResponse = {
     statusCode: 200,
@@ -30,6 +39,19 @@ describe('Controller', () => {
     const error = new Error('"teste" is required')
 
     const httpResponse = await sut.handle({ teste1: 'any_value' })
+
+    expect(httpResponse).toEqual({
+      statusCode: 400,
+      data: error
+    })
+  })
+
+  it('should return 400 if error is known', async () => {
+    const error = new Error('error_mapped')
+    error.stack = 'BUSINESS_ERROR'
+    jest.spyOn(sut, 'perform').mockRejectedValueOnce(error)
+
+    const httpResponse = await sut.handle({ teste: 'any_value' })
 
     expect(httpResponse).toEqual({
       statusCode: 400,
