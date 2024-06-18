@@ -136,4 +136,12 @@ describe('CreateTransactionUseCase', () => {
 
     await expect(promise).rejects.toThrow(new Error('Insufficient funds'))
   })
+
+  it('should throw Error when type is invalid', async () => {
+    transaction.type = 'ANY_TYPE'
+
+    const promise = sut.handle(transaction)
+
+    await expect(promise).rejects.toThrow(new Error('Invalid transaction type'))
+  })
 })

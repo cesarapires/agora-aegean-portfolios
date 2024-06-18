@@ -50,9 +50,20 @@ export class CreateTransactionUseCase implements CreateTransaction {
     transaction: CreateTransaction.Params
   ): void {
     const totalValue = stock.close * transaction.quantity
-    if (totalValue > wallet.balance && transaction.type === 'BUY') {
-      throw new BusinessError('Insufficient funds')
+    switch (transaction.type) {
+      case 'BUY':
+        if (totalValue > wallet.balance) {
+          throw new BusinessError('Insufficient funds')
+        }
+        wallet.balance -= totalValue
+        break
+      case 'SELL':
+        wallet.balance += totalValue
+        break
+      default:
+        throw new BusinessError('Invalid transaction type')
     }
+
     this.transaction = {
       ...transaction,
       unitaryValue: stock.close,
@@ -61,11 +72,6 @@ export class CreateTransactionUseCase implements CreateTransaction {
   }
 
   async updateWalletBalance (wallet: Wallet): Promise<void> {
-    if (this.transaction!.type === 'BUY') {
-      wallet.balance -= this.transaction!.totalValue
-    } else if (this.transaction!.type === 'SELL') {
-      wallet.balance += this.transaction!.totalValue
-    }
     await this.walletRepository.update(wallet)
   }
 }
