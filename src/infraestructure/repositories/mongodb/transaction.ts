@@ -20,11 +20,14 @@ export class MongoTransactionRepository {
     }
     const transaction = await this.transaction.create(transactionModel)
     return {
-      ...transaction,
       id: transaction._id.toHexString(),
       walletId: transaction.walletId.toHexString(),
       stockId: transaction.stockId.toHexString(),
-      userId: transaction.userId.toHexString()
+      userId: transaction.userId.toHexString(),
+      type: transaction.type,
+      quantity: transaction.quantity,
+      unitaryValue: transaction.unitaryValue,
+      totalValue: transaction.totalValue
     }
   }
 }

@@ -34,8 +34,6 @@ export class CreateTransactionController extends Controller {
       { ...httpRequest, type: this.typeOfTransaction }
     )
     log.info(`New transaction created with ID: ${transaction.id}`)
-    return ok({
-      ...transaction
-    })
+    return ok(transaction)
   }
 }
