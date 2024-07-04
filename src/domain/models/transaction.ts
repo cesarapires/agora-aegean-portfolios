@@ -1,4 +1,4 @@
-export interface Transaction {
+export interface TransactionData {
   id: string
   walletId: string
   stockId: string

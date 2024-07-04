@@ -2,13 +2,13 @@ import { type CreateTransaction } from '@/domain/feature/create-transaction'
 import { type SaveTransaction } from '@/domain/contracts/repositories/transaction'
 import { type GetStock } from '@/domain/contracts/repositories/stock'
 import { type GetWallet, type UpdateWallet } from '@/domain/contracts/repositories/wallet'
-import { type Transaction } from '@/domain/models/transaction'
-import { type Stock } from '@/domain/models/stock'
-import { type Wallet } from '@/domain/models/wallet'
+import { type TransactionData } from '@/domain/models/transaction'
+import { type StockData } from '@/domain/models/stock'
+import { type WalletData } from '@/domain/models/wallet'
 import { BusinessError, NotFoundError } from '@/domain/errors/domain-error'
 
 export class CreateTransactionUseCase implements CreateTransaction {
-  private transaction: Omit<Transaction, 'id'> | undefined
+  private transaction: Omit<TransactionData, 'id'> | undefined
 
   constructor (
     private readonly transactionRepository: SaveTransaction,
@@ -28,7 +28,7 @@ export class CreateTransactionUseCase implements CreateTransaction {
     return await this.transactionRepository.save(this.transaction!)
   }
 
-  async getWallet (walletId: string): Promise<Wallet> {
+  async getWallet (walletId: string): Promise<WalletData> {
     const wallet = await this.walletRepository.get(walletId)
     if (wallet === undefined) {
       throw new NotFoundError('Wallet')
@@ -36,7 +36,7 @@ export class CreateTransactionUseCase implements CreateTransaction {
     return wallet
   }
 
-  async getStock (stockId: string): Promise<Stock> {
+  async getStock (stockId: string): Promise<StockData> {
     const stock = await this.stockRepository.get(stockId)
     if (stock === undefined) {
       throw new NotFoundError('Stock')
@@ -45,8 +45,8 @@ export class CreateTransactionUseCase implements CreateTransaction {
   }
 
   calculateTotalValue (
-    wallet: Wallet,
-    stock: Stock,
+    wallet: WalletData,
+    stock: StockData,
     transaction: CreateTransaction.Params
   ): void {
     const totalValue = stock.close * transaction.quantity
@@ -71,7 +71,7 @@ export class CreateTransactionUseCase implements CreateTransaction {
     }
   }
 
-  async updateWalletBalance (wallet: Wallet): Promise<void> {
+  async updateWalletBalance (wallet: WalletData): Promise<void> {
     await this.walletRepository.update(wallet)
   }
 }

@@ -1,4 +1,4 @@
-export interface Wallet {
+export interface WalletData {
   id: string
   userId: string
   name: string

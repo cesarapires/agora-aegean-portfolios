@@ -1,4 +1,4 @@
-export interface Stock {
+export interface StockData {
   id: string
   stock: string
   name: string
