@@ -1,4 +1,4 @@
-import { type GetWallet, type UpdateWallet, type SaveWallet, type WalletData } from '@/domain/contracts/repositories/wallet'
+import { type GetWallet, type UpdateWallet, type SaveWallet, type Wallet } from '@/domain/contracts/repositories/wallet'
 import { walletSchema } from '@/infraestructure/repositories/mongodb/schema/wallet'
 import { type MongoWallet } from '@/infraestructure/repositories/mongodb/entities/wallet'
 
@@ -25,7 +25,7 @@ export class MongoWalletRepository implements SaveWallet, GetWallet, UpdateWalle
     }
   }
 
-  async get (walletId: string): Promise<WalletData | undefined> {
+  async get (walletId: string): Promise<Wallet | undefined> {
     const wallet = await this.wallet.findById(walletId)
     if (wallet != null) {
       return {
@@ -38,7 +38,7 @@ export class MongoWalletRepository implements SaveWallet, GetWallet, UpdateWalle
     }
   }
 
-  async update (wallet: WalletData): Promise<WalletData | undefined> {
+  async update (wallet: Wallet): Promise<Wallet | undefined> {
     const walletUpdated = await this.wallet.findByIdAndUpdate(wallet.id, {
       name: wallet.name,
       balance: wallet.balance

@@ -1,4 +1,4 @@
-import { type StockData, type GetStock, type SaveStock } from '@/domain/contracts/repositories/stock'
+import { type Stock, type GetStock, type SaveStock } from '@/domain/contracts/repositories/stock'
 import { stockShema } from '@/infraestructure/repositories/mongodb/schema/stock'
 import { type MongoStock } from '@/infraestructure/repositories/mongodb/entities/stock'
 
@@ -11,7 +11,7 @@ export class MongoStockRepository implements GetStock, SaveStock {
     this.stock = mongoose.model('Stock', stockShema)
   }
 
-  async get (stockId: string): Promise<StockData | undefined> {
+  async get (stockId: string): Promise<Stock | undefined> {
     const stock = await this.stock.findById(stockId)
     if (stock != null) {
       return {
@@ -29,7 +29,7 @@ export class MongoStockRepository implements GetStock, SaveStock {
     }
   }
 
-  async save (params: SaveStock.Params): Promise<StockData> {
+  async save (params: SaveStock.Params): Promise<Stock> {
     const stockModel = {
       _id: new mongoose.Types.ObjectId(),
       ...params

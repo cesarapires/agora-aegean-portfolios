@@ -4,7 +4,7 @@ import { walletSchema } from '@/infraestructure/repositories/mongodb/schema/wall
 import { type MongoWallet } from '@/infraestructure/repositories/mongodb/entities/wallet'
 import { MongoWalletRepository } from '@/infraestructure/repositories/mongodb/wallet'
 import { makeFakeDb } from './mocks/connection'
-import { type WalletData, type SaveWallet } from '@/domain/contracts/repositories/wallet'
+import { type Wallet, type SaveWallet } from '@/domain/contracts/repositories/wallet'
 
 describe('MongoWalletRepository', () => {
   let wallet: any
@@ -77,7 +77,7 @@ describe('MongoWalletRepository', () => {
       wallet.name = 'New Name Teste'
       wallet.balance = 0.0
 
-      await sut.update(wallet as WalletData)
+      await sut.update(wallet as Wallet)
 
       const walletSaved = await mongoWalletRepository.findById(walletCreated._id.toHexString())
 

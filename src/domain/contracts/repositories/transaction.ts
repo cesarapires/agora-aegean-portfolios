@@ -1,12 +1,12 @@
 export interface SaveTransaction {
-  save: (params: SaveTransaction.Params) => Promise<TransactionData>
+  save: (params: SaveTransaction.Params) => Promise<Transaction>
 }
 
 export namespace SaveTransaction {
-  export type Params = Omit<TransactionData, 'id'>
+  export type Params = Omit<Transaction, 'id'>
 }
 
-export type TransactionData = {
+export type Transaction = {
   id: string
   walletId: string
   stockId: string

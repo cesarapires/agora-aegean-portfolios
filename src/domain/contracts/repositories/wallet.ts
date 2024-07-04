@@ -3,21 +3,21 @@ export interface SaveWallet {
 }
 
 export interface GetWallet {
-  get: (param: string) => Promise<WalletData | undefined>
+  get: (param: string) => Promise<Wallet | undefined>
 }
 
 export interface UpdateWallet {
-  update: (params: WalletData) => Promise<WalletData | undefined>
+  update: (params: Wallet) => Promise<Wallet | undefined>
 }
 
 export namespace SaveWallet {
-  export type Params = Omit<WalletData, 'id'>
+  export type Params = Omit<Wallet, 'id'>
   export type Result = {
     id: string
   }
 }
 
-export type WalletData = {
+export type Wallet = {
   id: string
   userId: string
   name: string

@@ -1,16 +1,16 @@
 export interface SaveStock {
-  save: (params: SaveStock.Params) => Promise<StockData>
+  save: (params: SaveStock.Params) => Promise<Stock>
 }
 
 export interface GetStock {
-  get: (params: string) => Promise<StockData | undefined>
+  get: (params: string) => Promise<Stock | undefined>
 }
 
 export namespace SaveStock {
-  export type Params = Omit<StockData, 'id'>
+  export type Params = Omit<Stock, 'id'>
 }
 
-export type StockData = {
+export type Stock = {
   id: string
   stock: string
   name: string
